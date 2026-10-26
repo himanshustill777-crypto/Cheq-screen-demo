@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<title>CheQ Home Preview</title>
+<style>
+:root{--green:#0f5b52;--mint:#dff7ef;--bg:#f4f5f7;--text:#171a1d;--muted:#72777d;--card:#fff;--line:#e7e9eb}
+*{box-sizing:border-box}html,body{margin:0;background:#fff;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:var(--text)}
+body{display:flex;justify-content:center}.app{width:min(100%,430px);min-height:100vh;background:var(--bg);padding-bottom:82px;position:relative}
+.hero{background:linear-gradient(180deg,#0d5b53 0%,#134c48 100%);color:#fff;padding:22px 18px 24px;border-radius:0 0 24px 24px}
+.hero h1{font-size:24px;line-height:1.2;margin:0 0 6px;font-weight:800}.hero p{margin:2px 0;color:#d6ece8;font-size:14px}.hero .earn{font-size:16px;font-weight:700;margin-top:6px}
+.add-card{margin-top:18px;width:100%;border:0;background:#fff;color:#154b45;border-radius:14px;padding:14px 16px;font-size:16px;font-weight:800;box-shadow:0 6px 20px #082e2a44}
+.section{padding:16px 14px 0}.section h2{font-size:18px;margin:0 0 12px}.services{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.service{background:#fff;border:1px solid var(--line);border-radius:16px;padding:10px 5px;text-align:center;min-height:88px;box-shadow:0 2px 8px #00000008}
+.ico{width:38px;height:38px;border-radius:12px;background:var(--mint);display:grid;place-items:center;margin:0 auto 8px;font-size:19px}.service span{font-size:10.5px;font-weight:700;display:block;line-height:1.15}
+.banner{background:#fff;border-radius:18px;margin:14px 14px 0;padding:16px;display:flex;align-items:center;justify-content:space-between;gap:12px;box-shadow:0 2px 12px #0000000b}
+.banner strong{font-size:16px}.banner p{font-size:12px;color:var(--muted);margin:4px 0 0}.pill{background:#e8faf3;color:#0c6a59;border-radius:999px;padding:8px 10px;font-weight:800;font-size:12px;white-space:nowrap}
+.pending{margin:14px;background:#fff;border-radius:18px;padding:16px;box-shadow:0 2px 12px #0000000b}.pending-top{display:flex;justify-content:space-between;align-items:center}.pending h3{margin:0;font-size:16px}.pending p{font-size:12px;color:var(--muted);margin:7px 0 12px}.btnrow{display:flex;gap:8px}.btn{flex:1;border:0;border-radius:12px;padding:11px;font-weight:800}.primary{background:#0f5b52;color:#fff}.secondary{background:#eef1f2;color:#364047}
+.slider{overflow:hidden}.slides{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:4px;scrollbar-width:none}.slides::-webkit-scrollbar{display:none}.slide{min-width:84%;height:130px;border-radius:18px;padding:18px;color:#fff;scroll-snap-align:start;display:flex;flex-direction:column;justify-content:flex-end;box-shadow:0 4px 16px #00000014}.s1{background:linear-gradient(135deg,#5a248c,#d85bab)}.s2{background:linear-gradient(135deg,#111,#555)}.s3{background:linear-gradient(135deg,#ffb100,#ff5f00)}.slide small{opacity:.85}.slide strong{font-size:20px;margin-top:4px}
+.earn-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.earn-card{background:#fff;border-radius:16px;padding:13px;min-height:124px;box-shadow:0 2px 12px #0000000b}.earn-card .big{font-size:20px;font-weight:900;color:#0f5b52}.earn-card p{font-size:11px;color:var(--muted);margin:8px 0 0}
+.redeem{background:linear-gradient(135deg,#183f3c,#0f6f62);color:#fff;border-radius:18px;padding:18px;min-height:130px;display:flex;flex-direction:column;justify-content:flex-end}.redeem small{opacity:.8}.redeem strong{font-size:20px;margin-top:4px}
+.new{background:#fff;border-radius:18px;padding:18px;margin-bottom:18px;box-shadow:0 2px 12px #0000000b}.new strong{font-size:17px}.new p{color:var(--muted);font-size:12px;margin:7px 0 0}
+.ask{position:fixed;bottom:84px;right:max(calc((100vw - 430px)/2 + 16px),16px);width:54px;height:54px;border-radius:50%;border:0;background:#0f5b52;color:#fff;box-shadow:0 8px 24px #0f5b5255;font-size:22px}
+.bottom{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:min(100%,430px);height:70px;background:#fff;border-top:1px solid #e5e6e8;display:grid;grid-template-columns:repeat(6,1fr);z-index:20}.nav{display:flex;flex-direction:column;justify-content:center;align-items:center;font-size:9.5px;color:#6d7378;gap:4px}.nav b{font-size:18px;line-height:1}.nav.active{color:#0f5b52;font-weight:800}
+.tap{cursor:pointer}
+</style>
+</head>
+<body>
+<main class="app">
+  <section class="hero">
+    <h1>Pay Your Credit Card Bills</h1>
+    <div class="earn">Earn 1% back as CheQ Chips</div>
+    <p>Use them & get up to ₹100 discount every month</p>
+    <button class="add-card tap" onclick="toast('Add New Card')">＋ Add New Card</button>
+  </section>
+
+  <section class="section">
+    <div class="services">
+      <div class="service tap" onclick="toast('Education Fee')"><div class="ico">🎓</div><span>Education Fee</span></div>
+      <div class="service tap" onclick="toast('Jio Postpaid')"><div class="ico">📱</div><span>Jio Postpaid</span></div>
+      <div class="service tap" onclick="toast('Wallet')"><div class="ico">👛</div><span>Wallet</span></div>
+      <div class="service tap" onclick="toast('Loans')"><div class="ico">₹</div><span>Loans</span></div>
+      <div class="service tap" onclick="toast('Credit Score')"><div class="ico">📈</div><span>Credit Score</span></div>
+    </div>
+  </section>
+
+  <div class="banner tap" onclick="toast('Refer a friend')">
+    <div><strong>Earn ₹100 for every friend you refer</strong><p>Invite friends to CheQ and earn rewards.</p></div>
+    <div class="pill">Refer Now</div>
+  </div>
+
+  <div class="pending">
+    <div class="pending-top"><h3>Pending Actions</h3><span class="pill">1 action</span></div>
+    <p><b>Complete your Profile</b><br>Finish your details to unlock a smoother payment experience.</p>
+    <div class="btnrow"><button class="btn primary tap" onclick="toast('Continue')">Continue</button><button class="btn secondary tap" onclick="toast('Know More')">Know More</button></div>
+  </div>
+
+  <section class="section slider">
+    <h2>Do more on CheQ</h2>
+    <div class="slides">
+      <article class="slide s1"><small>Exclusive offer</small><strong>Upgrade your everyday tech</strong></article>
+      <article class="slide s2"><small>Special deal</small><strong>Smartphones & more</strong></article>
+      <article class="slide s3"><small>Limited period</small><strong>Shop & save more</strong></article>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Earn more on CheQ</h2>
+    <div class="earn-grid">
+      <div class="earn-card tap" onclick="toast('10k Chips')"><div class="big">10k</div><b>CheQ Chips</b><p>Earn more chips on eligible actions.</p></div>
+      <div class="earn-card tap" onclick="toast('₹1,000 discount')"><div class="big">₹1,000</div><b>Instant discount</b><p>On eligible rent or education payments.</p></div>
+      <div class="earn-card tap" onclick="toast('Refer friend')"><div class="big">1000</div><b>Chips</b><p>Refer a friend and earn rewards.</p></div>
+    </div>
+  </section>
+
+  <section class="section slider">
+    <h2>Redeem your chips</h2>
+    <div class="slides">
+      <article class="redeem"><small>ELVER</small><strong>Use your CheQ Chips on rewards</strong></article>
+      <article class="redeem" style="background:linear-gradient(135deg,#1e335f,#516dc2)"><small>Atlys</small><strong>Travel benefits with your chips</strong></article>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>What’s new on CheQ?</h2>
+    <div class="new"><strong>More ways to pay, earn and save</strong><p>Explore new CheQ experiences and upcoming features here.</p></div>
+  </section>
+</main>
+
+<button class="ask tap" onclick="toast('Ask Wisor')">✦</button>
+<nav class="bottom">
+  <div class="nav active tap" onclick="toast('Home')"><b>⌂</b><span>Home</span></div>
+  <div class="nav tap" onclick="toast('Cards')"><b>▣</b><span>Cards</span></div>
+  <div class="nav tap" onclick="toast('Utilities')"><b>⚡</b><span>Utilities</span></div>
+  <div class="nav tap" onclick="toast('Loans')"><b>₹</b><span>Loans</span></div>
+  <div class="nav tap" onclick="toast('Profile')"><b>◉</b><span>Profile</span></div>
+  <div class="nav tap" onclick="toast('Rewards')"><b>★</b><span>Rewards</span></div>
+</nav>
+<script>
+let tm;function toast(t){clearTimeout(tm);let x=document.getElementById('toast');if(!x){x=document.createElement('div');x.id='toast';x.style='position:fixed;left:50%;bottom:82px;transform:translateX(-50%);background:#111;color:#fff;padding:10px 14px;border-radius:12px;font:600 12px system-ui;z-index:99;box-shadow:0 5px 20px #0004';document.body.appendChild(x)}x.textContent=t+' — next screen pending';x.style.display='block';tm=setTimeout(()=>x.style.display='none',1200)}
+</script>
+</body></html>
